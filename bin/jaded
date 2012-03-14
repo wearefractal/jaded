@@ -7,12 +7,12 @@ program = require 'commander'
 mkdirp = require 'mkdirp'
 
 program
-	.version('0.0.1')
-	.option('-i --input [folder]', 'Specify input folder', '.')
-	.option('-o --output [folder]', 'Specify output folder', '.')
-	.option('-d --development', 'Beautify output and insert line numbers')
-	.option('-a --amd', 'Wrap output in AMD closure')
-	.parse(process.argv)
+  .version('0.0.1')
+  .option('-i --input [folder]', 'Specify input folder', '.')
+  .option('-o --output [folder]', 'Specify output folder', '.')
+  .option('-d --development', 'Beautify output and insert line numbers')
+  .option('-a --amd', 'Wrap output in AMD closure')
+  .parse(process.argv)
 
 indir = join process.cwd(), program.input
 outdir = join process.cwd(), program.output
@@ -22,26 +22,26 @@ throw 'Invalid input folder' unless lstatSync(indir).isDirectory()
 throw 'Invalid output folder' unless lstatSync(outdir).isDirectory()
 
 opt =
-	development: program.development
-	amd: program.amd
+  development: program.development
+  amd: program.amd
 
 count = 0
 renderFolder = (folder, output) ->
-	files = readdirSync folder
-	for file in files
-		file = join folder, file
-		stat = lstatSync file
-		if stat.isDirectory()
-			console.log basename file
-			renderFolder file, join output, basename file
-		else
-			return unless extname(file) is '.jade'
-			name = basename file, extname file
-			savepath = join output, "#{name}.js"
-			contents = String readFileSync file
-			newcontents = jaded.compile contents, opt
-			writeFileSync savepath, newcontents
-			++count
+  files = readdirSync folder
+  for file in files
+    file = join folder, file
+    stat = lstatSync file
+    if stat.isDirectory()
+      console.log basename file
+      renderFolder file, join output, basename file
+    else
+      return unless extname(file) is '.jade'
+      name = basename file, extname file
+      savepath = join output, "#{name}.js"
+      contents = String readFileSync file
+      newcontents = jaded.compile contents, opt
+      writeFileSync savepath, newcontents
+      ++count
 
 renderFolder indir, outdir
 console.log "#{count} template#{if count is 1 then '' else 's'} from '#{program.input}' rendered to '#{program.output}'"
