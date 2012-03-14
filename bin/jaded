@@ -32,8 +32,9 @@ renderFolder = (folder, output) ->
     file = join folder, file
     stat = lstatSync file
     if stat.isDirectory()
-      console.log basename file
-      renderFolder file, join output, basename file
+      outdir = join output, basename file
+      mkdirp.sync outdir unless existsSync outdir
+      renderFolder file, outdir
     else
       return unless extname(file) is '.jade'
       name = basename file, extname file
