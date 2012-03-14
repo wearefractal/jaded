@@ -1,17 +1,21 @@
 {
-   "name":"APPNAME",
-   "description":"Nothing here yet",
+   "name":"jaded",
+   "description":"Alternative Jade CLI",
    "version":"0.0.1",
-   "homepage":"http://github.com/wearefractal/APPNAME",
-   "repository":"git://github.com/wearefractal/APPNAME.git",
+   "homepage":"http://github.com/wearefractal/jaded",
+   "repository":"git://github.com/wearefractal/jaded.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
    "main":"./index.js",
-   
-   "dependencies":{
-      "coffee-script":"*"
+   "preferGlobal":"true",
+   "bin":{
+      "jaded":"./bin/jaded"
    },
-   "devDependencies":{
-      "node-log":"*"
+   "dependencies":{
+      "coffee-script":"*",
+      "jade":"*",
+      "uglify-js":"*",
+      "commander":"*",
+      "mkdirp":"*"
    },
    "engines":{
       "node":">= 0.4.0"
@@ -19,7 +23,7 @@
    "licenses":[
       {
          "type":"MIT",
-         "url":"http://github.com/wearefractal/APPNAME/raw/master/LICENSE"
+         "url":"http://github.com/wearefractal/jaded/raw/master/LICENSE"
       }
    ]
 }
