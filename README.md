@@ -2,11 +2,11 @@
 
 <table>
 <tr> 
-<td>Package</td><td>APPNAME</td>
+<td>Package</td><td>jaded</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>NOTHING HERE YET</td>
+<td>Alternative Jade CLI</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -14,15 +14,27 @@
 </tr>
 </table>
 
-## Usage
+## Installation
 
-```coffee-script
-NOTHING HERE YET
+```
+sudo npm install jaded -g
 ```
 
-## Examples
+## Usage
 
-You can view further examples in the [example folder.](https://github.com/wearefractal/APPNAME/tree/master/examples)
+```
+  Usage: jaded [options]
+
+  Options:
+
+    -h, --help            output usage information
+    -V, --version         output the version number
+    -i --input [folder]   Specify input folder
+    -o --output [folder]  Specify output folder
+    -d --development      Beautify output and insert line numbers
+    -a --amd              Wrap output in AMD closure
+
+```
 
 ## LICENSE
 
