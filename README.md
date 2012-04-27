@@ -32,7 +32,7 @@ sudo npm install jaded -g
     -i --input [folder]   Specify input folder
     -o --output [folder]  Specify output folder
     -d --development      Beautify output and insert line numbers
-    -a --amd              Wrap output in AMD closure
+    -a --amd [jade]       Wrap output in AMD closure
 
 ```
 
