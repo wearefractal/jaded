@@ -12,6 +12,7 @@ module.exports =
     opts =
       client: true
       compileDebug: opt.development
+      filename: opt.filename
     src = String jade.compile contents, opts
 
     # Wrap in amd closure

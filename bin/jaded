@@ -31,11 +31,18 @@ renderFolder = (folder, output) ->
   for file in files
     file = join folder, file
     stat = lstatSync file
+
     if stat.isDirectory()
+
+      #recurse
       outdir = join output, basename file
       mkdirp.sync outdir unless existsSync outdir
       renderFolder file, outdir
+
     else
+
+      #compile file
+      opt.filename = file
       return unless extname(file) is '.jade'
       name = basename file, extname file
       savepath = join output, "#{name}.js"
