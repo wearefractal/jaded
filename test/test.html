@@ -14,6 +14,7 @@
           image_url: 'http://ecx.images-amazon.com/images/I/51GeFt0kCjL._SL135_.jpg',
           timeRemaining: 60,
           endingSoon: false,
+          ended: false,
           bid: 67,
           bidder: 'Contra'
         }
@@ -27,6 +28,9 @@
         }
         if (input.auction.timeRemaining > 0) {
           setTimeout(changeTime, 1000);
+        } else {
+          input.auction.endingSoon = false;
+          input.auction.ended = true;
         }
       };
       changeTime();
