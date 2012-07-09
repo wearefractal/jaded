@@ -1,13 +1,35 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://raw.github.com/josscrowcroft/accounting.js/master/accounting.min.js"></script>
     <script src="https://raw.github.com/visionmedia/jade/master/runtime.js"></script>
     <script src="./rivets.js"></script>
     <script src="./out/login.js"></script>
+    <script src="watch.js"></script>
     <script>
     $(function(){
-      window.dude = {title: "Test", placeholder: "tester", shown: true};
-      anonymous('#main', window.dude);
+      window.input = {
+        auction: {
+          title: 'Book Auction',
+          image_url: 'http://ecx.images-amazon.com/images/I/51GeFt0kCjL._SL135_.jpg',
+          timeRemaining: 60,
+          endingSoon: false,
+          bid: 67,
+          bidder: 'Contra'
+        }
+      };
+      anonymous('#main', input);
+
+      var changeTime = function(){
+        input.auction.timeRemaining--;
+        if (input.auction.timeRemaining < 50) {
+          input.auction.endingSoon = true;
+        }
+        if (input.auction.timeRemaining > 0) {
+          setTimeout(changeTime, 1000);
+        }
+      };
+      changeTime();
     });
     </script>
   </head>

@@ -12,6 +12,7 @@ program
   .option('-o --output [folder]', 'Specify output folder', '.')
   .option('-d --development', 'Beautify output and insert line numbers')
   .option('-a --amd [jade]', 'Wrap output in AMD closure')
+  .option('-r --rivets', 'Wrap output in Rivets bindings')
   .parse(process.argv)
 
 indir = join process.cwd(), program.input
@@ -24,6 +25,7 @@ throw 'Invalid output folder' unless lstatSync(outdir).isDirectory()
 opt =
   development: program.development
   amd: program.amd
+  rivets: program.rivets
 
 count = 0
 renderFolder = (folder, output) ->

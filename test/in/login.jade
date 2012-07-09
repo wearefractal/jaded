@@ -1,3 +1,19 @@
-div
-  h3 #{title}
-  input(type="text", name="username", placeholder="#{placeholder}", show="!{shown}")
+#auction
+  h1 !{auction.title}
+  img(src='!{auction.image_url}')
+  br
+  span !{auction.timeRemaining | seconds}
+
+  .alert-box(show='!{auction.endingSoon}')
+    p Hurry up! This auction is ending soon.
+
+  dl
+    dt Highest Bid:
+    dd !{auction.bid | currency}
+    dt Bidder:
+    dd !{auction.bidder}
+
+#placebid
+  h2 Change bid
+  input(type="text", value='!{auction.bidder}')
+  input(type="text", value='!{auction.bid}')
