@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jaded by wearefractal</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jaded</h1>
+        <p>Alternative Jade CLI/Plugin system</p>
+
+        <p class="view"><a href="https://github.com/wearefractal/jaded">View the Project on GitHub <small>wearefractal/jaded</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/wearefractal/jaded/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/wearefractal/jaded/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/wearefractal/jaded">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Information</h2>
+
+<table>
+<tr>
+<td>Package</td>
+<td>jaded</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Collection of Jade plugins</td>
+</tr>
+<tr>
+<td>Node Version</td>
+<td>&gt;= 0.4</td>
+</tr>
+</table><h2>Installation</h2>
+
+<pre><code>sudo npm install jaded -g
+</code></pre>
+
+<h2>Usage</h2>
+
+<pre><code>  Usage: jaded [options]
+
+  Options:
+
+    -h, --help            output usage information
+    -V, --version         output the version number
+    -i --input [folder]   Specify input folder
+    -o --output [folder]  Specify output folder
+    -d --development      Beautify output
+    -a --amd              Wrap output in AMD closure
+    -r --rivets           Add rivets bindings via ${}
+
+</code></pre>
+
+<h3>Rivets</h3>
+
+<p>Use ${} where you would usually use #{} to watch the object for changes. The template function now takes two arguments - a selector for where the template will be rendered ("#content") and a locals object.</p>
+
+<div class="highlight">
+<pre><span class="c1">#auction</span>
+  <span class="nx">h1</span> <span class="nx">$</span><span class="p">{</span><span class="nx">auction</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span>
+  <span class="nx">img</span><span class="p">(</span><span class="nx">src</span><span class="o">=</span><span class="s">'${auction.image_url}'</span><span class="p">)</span>
+  <span class="nx">br</span>
+  <span class="nx">span</span> <span class="nx">$</span><span class="p">{</span><span class="nx">auction</span><span class="p">.</span><span class="nx">timeRemaining</span> <span class="o">|</span> <span class="nx">time</span><span class="p">}</span>
+
+  <span class="p">.</span><span class="nx">alert</span><span class="o">-</span><span class="nx">box</span><span class="p">(</span><span class="nx">show</span><span class="o">=</span><span class="s">'${auction.endingSoon}'</span><span class="p">)</span>
+    <span class="nx">p</span> <span class="nx">Hurry</span> <span class="nx">up</span><span class="o">!</span> <span class="nx">This</span> <span class="nx">auction</span> <span class="o">is</span> <span class="nx">ending</span> <span class="nx">soon</span><span class="p">.</span>
+
+  <span class="nx">dl</span>
+    <span class="nx">dt</span> <span class="nx">Highest</span> <span class="nv">Bid:</span>
+    <span class="nx">dd</span> <span class="nx">$</span><span class="p">{</span><span class="nx">auction</span><span class="p">.</span><span class="nx">bid</span> <span class="o">|</span> <span class="nx">currency</span><span class="p">}</span>
+    <span class="nx">dt</span> <span class="nv">Bidder:</span>
+    <span class="nx">dd</span> <span class="nx">$</span><span class="p">{</span><span class="nx">auction</span><span class="p">.</span><span class="nx">bidder</span><span class="p">}</span>
+</pre>
+</div>
+
+
+<p>compiles to</p>
+
+<div class="highlight">
+<pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"auction"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;h1</span> <span class="na">data-text=</span><span class="s">"auction.title"</span><span class="nt">&gt;&lt;/h1&gt;</span>
+   <span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"auction.image_url"</span> <span class="nt">/&gt;</span>
+   <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+   <span class="nt">&lt;span</span> <span class="na">data-text=</span><span class="s">"auction.timeRemaining | time"</span><span class="nt">&gt;&lt;/span&gt;</span>
+   <span class="nt">&lt;div</span> <span class="na">data-show=</span><span class="s">"auction.endingSoon"</span> <span class="na">class=</span><span class="s">"alert-box"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p&gt;</span>Hurry up! This auction is ending soon.<span class="nt">&lt;/p&gt;</span>
+   <span class="nt">&lt;/div&gt;</span>
+   <span class="nt">&lt;dl&gt;</span>
+      <span class="nt">&lt;dt&gt;</span>Highest Bid:<span class="nt">&lt;/dt&gt;</span>
+      <span class="nt">&lt;dd</span> <span class="na">data-text=</span><span class="s">"auction.bid | currency"</span><span class="nt">&gt;&lt;/dd&gt;</span>
+      <span class="nt">&lt;dt&gt;</span>Bidder:<span class="nt">&lt;/dt&gt;</span>
+      <span class="nt">&lt;dd</span> <span class="na">data-text=</span><span class="s">"auction.bidder"</span><span class="nt">&gt;&lt;/dd&gt;</span>
+   <span class="nt">&lt;/dl&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+</div>
+
+
+<h2>Middleware</h2>
+
+<p>jaded modifies the jade package to allow processing through middleware - just specify the node type and a handler</p>
+
+<div class="highlight">
+<pre><span class="nv">jade = </span><span class="nx">require</span> <span class="s">'jade'</span>
+<span class="nx">require</span> <span class="s">'jaded'</span> <span class="c1"># this will load the hooks</span>
+
+<span class="nx">jade</span><span class="p">.</span><span class="nx">use</span> <span class="s">'Tag'</span><span class="p">,</span> <span class="nf">(node) -&gt;</span>
+  <span class="c1"># Do stuff to node here</span>
+  <span class="k">return</span> <span class="nx">node</span>
+</pre>
+</div>
+
+
+<h2>LICENSE</h2>
+
+<p>(MIT License)</p>
+
+<p>Copyright (c) 2012 Fractal <a href="mailto:contact@wearefractal.com">contact@wearefractal.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/wearefractal">wearefractal</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
