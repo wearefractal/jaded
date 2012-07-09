@@ -1,9 +1,12 @@
-define(function(jade) {
-  return function anonymous(locals, attrs, escape, rethrow) {
-    var attrs = jade.attrs, escape = jade.escape, rethrow = jade.rethrow;
+define([ "true" ], function(jade) {
+  return function anonymous(locals, attrs, escape, rethrow, merge) {
+    attrs = attrs || jade.attrs;
+    escape = escape || jade.escape;
+    rethrow = rethrow || jade.rethrow;
+    merge = merge || jade.merge;
     var __jade = [ {
       lineno: 1,
-      filename: undefined
+      filename: "/home/contra/Projects/jaded/test/in/login.jade"
     } ];
     try {
       var buf = [];
@@ -17,11 +20,7 @@ define(function(jade) {
           lineno: 1,
           filename: __jade[0].filename
         });
-        buf.push("<div");
-        buf.push(attrs({
-          "class": "modal" + " " + "in"
-        }));
-        buf.push(">");
+        buf.push('<div class="modal">');
         __jade.unshift({
           lineno: undefined,
           filename: __jade[0].filename
@@ -30,11 +29,7 @@ define(function(jade) {
           lineno: 2,
           filename: __jade[0].filename
         });
-        buf.push("<form");
-        buf.push(attrs({
-          id: "login"
-        }));
-        buf.push(">");
+        buf.push('<div class="modal-header">');
         __jade.unshift({
           lineno: undefined,
           filename: __jade[0].filename
@@ -43,24 +38,17 @@ define(function(jade) {
           lineno: 3,
           filename: __jade[0].filename
         });
-        buf.push("<div");
-        buf.push(attrs({
-          "class": "modal-header"
-        }));
-        buf.push(">");
+        buf.push("<h3>");
         __jade.unshift({
           lineno: undefined,
           filename: __jade[0].filename
         });
         __jade.unshift({
-          lineno: 4,
+          lineno: 3,
           filename: __jade[0].filename
         });
-        buf.push("<h3>Login");
-        __jade.unshift({
-          lineno: undefined,
-          filename: __jade[0].filename
-        });
+        buf.push("" + escape((interp = dude.title) == null ? "" : interp) + "");
+        __jade.shift();
         __jade.shift();
         buf.push("</h3>");
         __jade.shift();
@@ -68,93 +56,35 @@ define(function(jade) {
         buf.push("</div>");
         __jade.shift();
         __jade.unshift({
+          lineno: 4,
+          filename: __jade[0].filename
+        });
+        buf.push('<div class="modal-body">');
+        __jade.unshift({
+          lineno: undefined,
+          filename: __jade[0].filename
+        });
+        __jade.unshift({
           lineno: 5,
-          filename: __jade[0].filename
-        });
-        buf.push("<div");
-        buf.push(attrs({
-          "class": "modal-body"
-        }));
-        buf.push(">");
-        __jade.unshift({
-          lineno: undefined,
-          filename: __jade[0].filename
-        });
-        __jade.unshift({
-          lineno: 6,
-          filename: __jade[0].filename
-        });
-        buf.push("<div");
-        buf.push(attrs({
-          "class": "alert" + " " + "alert-error" + " " + "hide"
-        }));
-        buf.push(">");
-        __jade.unshift({
-          lineno: undefined,
-          filename: __jade[0].filename
-        });
-        __jade.shift();
-        buf.push("</div>");
-        __jade.shift();
-        __jade.unshift({
-          lineno: 7,
           filename: __jade[0].filename
         });
         buf.push("<input");
         buf.push(attrs({
           type: "text",
           name: "username",
-          placeholder: "Username",
+          placeholder: "" + dude.placeholder + "",
+          "data-show": "dude.shown",
           "class": "span7"
-        }));
-        buf.push("/>");
-        __jade.shift();
-        __jade.unshift({
-          lineno: 8,
-          filename: __jade[0].filename
-        });
-        buf.push("<input");
-        buf.push(attrs({
-          type: "password",
-          name: "password",
-          placeholder: "Password",
-          "class": "span7"
+        }, {
+          type: true,
+          name: true,
+          placeholder: true,
+          "data-show": true
         }));
         buf.push("/>");
         __jade.shift();
         __jade.shift();
         buf.push("</div>");
-        __jade.shift();
-        __jade.unshift({
-          lineno: 9,
-          filename: __jade[0].filename
-        });
-        buf.push("<div");
-        buf.push(attrs({
-          "class": "modal-footer"
-        }));
-        buf.push(">");
-        __jade.unshift({
-          lineno: undefined,
-          filename: __jade[0].filename
-        });
-        __jade.unshift({
-          lineno: 10,
-          filename: __jade[0].filename
-        });
-        buf.push("<input");
-        buf.push(attrs({
-          type: "submit",
-          value: "Login",
-          "class": "btn" + " " + "btn-primary"
-        }));
-        buf.push("/>");
-        __jade.shift();
-        __jade.shift();
-        buf.push("</div>");
-        __jade.shift();
-        __jade.shift();
-        buf.push("</form>");
         __jade.shift();
         __jade.shift();
         buf.push("</div>");

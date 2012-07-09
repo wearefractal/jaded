@@ -1,7 +1,7 @@
 {
    "name":"jaded",
    "description":"Alternative Jade CLI",
-   "version":"0.0.3",
+   "version":"0.0.4",
    "homepage":"http://github.com/wearefractal/jaded",
    "repository":"git://github.com/wearefractal/jaded.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",

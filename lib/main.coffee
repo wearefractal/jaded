@@ -1,5 +1,16 @@
 jade = require 'jade'
+rivets = require './rivets'
 {parser, uglify} = require 'uglify-js'
+
+jade.nodes.Tag::__proto__.setAttribute = (name, val, escaped) ->
+  if name in rivets.routines() and matches = val.match /!\{([^}]+)\}/
+    val = "\"#{matches[1]}\""
+    name = "data-#{name}"
+  @attrs.push
+    name: name
+    val: val
+    escaped: escaped
+  return @
 
 module.exports =
   minify: (code) -> uglify.gen_code uglify.ast_squeeze uglify.ast_mangle parser.parse code
