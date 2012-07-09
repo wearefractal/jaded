@@ -63,7 +63,9 @@ compiles to
 ```html
 <div id="auction">
    <h1 data-text="auction.title"></h1>
-   <img data-src="auction.image_url" /><br /><span data-text="auction.timeRemaining | seconds"></span>
+   <img data-src="auction.image_url" />
+   <br />
+   <span data-text="auction.timeRemaining | time"></span>
    <div data-show="auction.endingSoon" class="alert-box">
       <p>Hurry up! This auction is ending soon.</p>
    </div>
@@ -73,10 +75,6 @@ compiles to
       <dt>Bidder:</dt>
       <dd data-text="auction.bidder"></dd>
    </dl>
-</div>
-<div id="placebid">
-   <h2>Change bid</h2>
-   <input type="text" data-value="auction.bidder" /><input type="text" data-value="auction.bid" />
 </div>
 ```
 
