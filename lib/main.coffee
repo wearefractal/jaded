@@ -13,6 +13,7 @@ module.exports =
 
     # Jade compile to function string
     jopts =
+      filename: opt.filename
       client: true
       compileDebug: false
     contents = String contents # for fs buffers
