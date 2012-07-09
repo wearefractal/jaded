@@ -80,7 +80,7 @@ compiles to
 
 ## Middleware
 
-jaded inserts modifies the jade package to allow processing through middleware.
+jaded modifies the jade package to allow processing through middleware - just specify the node type and a handler
 
 ```coffeescript
 jade = require 'jade'
