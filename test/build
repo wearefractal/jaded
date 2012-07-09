@@ -1,1 +1,1 @@
-../bin/jaded -i in -o out -d
+../bin/jaded -i in -o out -dra
