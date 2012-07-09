@@ -1,31 +1,57 @@
+###
+ Jade - runtime
+ Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>
+ MIT Licensed
 
-# Escape the given string of html.
-escape = (html) -> String(html).replace(/&(?!\w+;)/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace /"/g, "&quot;"
+ Converted to coffee-script and modified by Contra
+ This runtime isn't required by jaded and doesn't provide any extra features besides fixing rethrow
+###
 
-# Any template errors are passed to this
-rethrow = (err) -> throw err
+nulls = (val) -> val?
+Array.isArray ?= (arr) ->  Object::toString.call(arr) is "[object Array]"
+Object.keys ?= (obj) -> (k for k of own obj)
 
-# Render the given attributes object.
-attrs = (obj) ->
-  buf = []
-  delete obj.terse
+window.jade =
+  merge: (a, b) ->
+    ac = a["class"]
+    bc = b["class"]
+    if ac or bc
+      ac ?= []
+      bc ?= []
+      ac = [ac] unless Array.isArray ac
+      bc = [bc] unless Array.isArray bc
+      ac = ac.filter nulls
+      bc = bc.filter nulls
+      a["class"] = ac.concat(bc).join " "
+    a[k] = b[k] for k of b when k isnt "class"
+    return a
 
-  for key, val of obj
-    buf.push ""
-    if val and typeof val is "boolean"
-      buf.push "#{key}='#{key}'"
-    else if key is "class" and Array.isArray val
-      buf.push "#{key}='#{escape val.join(' ')}'"
-    else
-      buf.push "#{key}='#{escape(val)}'"
-  return buf.join " "
+  attrs: (obj, escaped) ->
+    buf = []
+    terse = obj.terse
+    delete obj.terse
 
-jade =
-  escape: escape
-  rethrow: rethrow
-  attrs: attrs
+    keys = Object.keys obj
+    if keys.length
+      buf.push ""
+      for k,v of obj
+        if typeof val is "boolean" or val is null
+          buf.push (if terse then key else "#{key}=\"#{key}\"") if val
+        else if key.indexOf("data") is 0 and typeof val isnt "string"
+          buf.push "#{key}='#{JSON.stringify(val)}'"
+        else if key is "class" and Array.isArray val
+          buf.push "#{key}=\"#{jade.escape(val.join(' '))}\""
+        else if escaped and escaped[key]
+          buf.push "#{key}=\"#{jade.escape(val)}\""
+        else
+          buf.push "#{key}=\"#{val}\""
+    return buf.join " "
 
-if typeof define isnt 'undefined'
-  define [], jade
-else
-  window.jade = jade
+  escape: (html) ->
+    String(html).replace(/&(?!(\w+|\#\d+);)/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace /"/g, "&quot;"
+
+  rethrow: (err, filename, lineno) ->
+    throw err unless filename
+    err.path = filename
+    err.message = (filename or "Jade") + ":" + lineno + "\n\n" + err.message
+    throw err

@@ -1,6 +1,6 @@
 {
    "name":"jaded",
-   "description":"Alternative Jade CLI",
+   "description":"Collection of Jade plugins",
    "version":"0.0.4",
    "homepage":"http://github.com/wearefractal/jaded",
    "repository":"git://github.com/wearefractal/jaded.git",

@@ -6,7 +6,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td>Alternative Jade CLI</td>
+<td>Collection of Jade plugins</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -31,9 +31,66 @@ sudo npm install jaded -g
     -V, --version         output the version number
     -i --input [folder]   Specify input folder
     -o --output [folder]  Specify output folder
-    -d --development      Beautify output and insert line numbers
-    -a --amd [jade]       Wrap output in AMD closure
+    -d --development      Beautify output
+    -a --amd              Wrap output in AMD closure
+    -r --rivets           Add rivets bindings via !{}
 
+```
+
+### Rivets
+
+Use !{} where you would usually use #{} to watch the object for changes. The template function now takes two arguments - a selector for where the template will be rendered ("#content") and a locals object.
+
+```coffeescript
+#auction
+  h1 !{auction.title}
+  img(src='!{auction.image_url}')
+  br
+  span !{auction.timeRemaining | time}
+
+  .alert-box(show='!{auction.endingSoon}')
+    p Hurry up! This auction is ending soon.
+
+  dl
+    dt Highest Bid:
+    dd !{auction.bid | currency}
+    dt Bidder:
+    dd !{auction.bidder}
+```
+
+compiles to
+
+```html
+<div id="auction">
+   <h1 data-text="auction.title"></h1>
+   <img data-src="auction.image_url" /><br /><span data-text="auction.timeRemaining | seconds"></span>
+   <div data-show="auction.endingSoon" class="alert-box">
+      <p>Hurry up! This auction is ending soon.</p>
+   </div>
+   <dl>
+      <dt>Highest Bid:</dt>
+      <dd data-text="auction.bid | currency"></dd>
+      <dt>Bidder:</dt>
+      <dd data-text="auction.bidder"></dd>
+   </dl>
+</div>
+<div id="placebid">
+   <h2>Change bid</h2>
+   <input type="text" data-value="auction.bidder" /><input type="text" data-value="auction.bid" />
+</div>
+```
+
+## Middleware
+
+jaded inserts modifies the jade package to allow processing through middleware.
+
+```coffeescript
+jade = require 'jade'
+require 'jaded' # this will load the hooks
+
+jade.use 'Tag', (node) ->
+  # Do stuff to node here
+  return node
 ```
 
 ## LICENSE

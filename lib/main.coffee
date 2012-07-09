@@ -8,12 +8,15 @@ module.exports =
   beautify: (code, indent=2) -> uglify.gen_code parser.parse(code), beautify: true, indent_level: indent
   compile: (contents, opt={}) ->
     opt.development ?= false
-    opt.rivets ?= true
-    opt.amd = 'jade' if opt.amd is true
+    opt.rivets ?= false
+    opt.amd ?= false
 
     # Jade compile to function string
+    jopts =
+      client: true
+      compileDebug: false
     contents = String contents # for fs buffers
-    src = String jade.compile contents, client: true
+    src = String jade.compile contents, jopts
 
     if opt.rivets # wrap with rivets conveience function
       src = """
@@ -24,6 +27,6 @@ module.exports =
       """
 
     # Wrap in amd closure
-    src = "define(['#{opt.amd}'], function(jade) {return #{src};});" if opt.amd?
+    src = "define(function() {return #{src};});" if opt.amd is true
     src = (if opt.development then module.exports.beautify(src) else module.exports.minify(src))
     return src
