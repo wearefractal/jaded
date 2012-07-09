@@ -33,7 +33,7 @@ sudo npm install jaded -g
     -o --output [folder]  Specify output folder
     -d --development      Beautify output
     -a --amd              Wrap output in AMD closure
-    -r --rivets           Add rivets bindings via !{}
+    -r --rivets           Add rivets bindings via ${}
 
 ```
 
