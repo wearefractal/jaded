@@ -39,23 +39,23 @@ sudo npm install jaded -g
 
 ### Rivets
 
-Use !{} where you would usually use #{} to watch the object for changes. The template function now takes two arguments - a selector for where the template will be rendered ("#content") and a locals object.
+Use ${} where you would usually use #{} to watch the object for changes. The template function now takes two arguments - a selector for where the template will be rendered ("#content") and a locals object.
 
 ```coffeescript
 #auction
-  h1 !{auction.title}
-  img(src='!{auction.image_url}')
+  h1 ${auction.title}
+  img(src='${auction.image_url}')
   br
-  span !{auction.timeRemaining | time}
+  span ${auction.timeRemaining | time}
 
-  .alert-box(show='!{auction.endingSoon}')
+  .alert-box(show='${auction.endingSoon}')
     p Hurry up! This auction is ending soon.
 
   dl
     dt Highest Bid:
-    dd !{auction.bid | currency}
+    dd ${auction.bid | currency}
     dt Bidder:
-    dd !{auction.bidder}
+    dd ${auction.bidder}
 ```
 
 compiles to

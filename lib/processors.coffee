@@ -1,6 +1,6 @@
 {nodes} = jade = require 'jade'
 
-rvinter = /!\{([^}]+)\}/
+rvinter = /\$\{([^}]+)\}/
 
 # interpolate text subnodes
 jade.use 'Tag', (node) ->
