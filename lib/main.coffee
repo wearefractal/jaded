@@ -13,10 +13,11 @@ module.exports =
 
     # Jade compile to function string
     jopts =
+      filename: opt.filename
       client: true
       compileDebug: opt.development
     contents = String contents # for fs buffers
-    src = String jade.compile contents, opt.filename, jopts
+    src = String jade.compile contents, jopts
 
     if opt.rivets # wrap with rivets conveience function
       src = """
