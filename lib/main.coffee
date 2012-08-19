@@ -15,7 +15,7 @@ module.exports =
     jopts =
       filename: opt.filename
       client: true
-      compileDebug: false
+      compileDebug: opt.development
     contents = String contents # for fs buffers
     src = String jade.compile contents, jopts
 
