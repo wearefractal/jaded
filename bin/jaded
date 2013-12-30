@@ -2,8 +2,8 @@
 
 jaded = require '../index'
 program = require 'commander'
-{readFileSync, writeFileSync, readdirSync, lstatSync} = require 'fs'
-{join, basename, extname, existsSync} = require 'path'
+{readFileSync, writeFileSync, readdirSync, lstatSync, existsSync} = require 'fs'
+{join, basename, extname} = require 'path'
 mkdirp = require 'mkdirp'
 
 program

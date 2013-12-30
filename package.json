@@ -1,29 +1,29 @@
 {
-   "name":"jaded",
-   "description":"Collection of Jade plugins",
-   "version":"0.1.0",
-   "homepage":"http://github.com/wearefractal/jaded",
-   "repository":"git://github.com/wearefractal/jaded.git",
-   "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
-   "main":"./index.js",
-   "preferGlobal":"true",
-   "bin":{
-      "jaded":"./bin/jaded"
-   },
-   "dependencies":{
-      "coffee-script":"*",
-      "jade":"*",
-      "uglify-js":"1.3.4",
-      "commander":"*",
-      "mkdirp":"*"
-   },
-   "engines":{
-      "node":">= 0.4.0"
-   },
-   "licenses":[
-      {
-         "type":"MIT",
-         "url":"http://github.com/wearefractal/jaded/raw/master/LICENSE"
-      }
-   ]
+  "name": "jaded",
+  "description": "Collection of Jade plugins",
+  "version": "0.1.1",
+  "homepage": "http://github.com/wearefractal/jaded",
+  "repository": "git://github.com/wearefractal/jaded.git",
+  "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+  "main": "./index.js",
+  "preferGlobal": "true",
+  "bin": {
+    "jaded": "./bin/jaded"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6.3",
+    "jade": "~1.0.1",
+    "uglify-js": "1.3.4",
+    "commander": "~2.1.0",
+    "mkdirp": "~0.3.5"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/wearefractal/jaded/raw/master/LICENSE"
+    }
+  ]
 }
